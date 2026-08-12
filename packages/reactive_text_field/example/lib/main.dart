@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart' hide ReactiveTextField;
 import 'package:reactive_text_field/reactive_text_field.dart';
 
@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -17,9 +17,8 @@ class _MyAppState extends State<MyApp> {
   TextEditingController? _controller;
   final FocusNode _focusNode = FocusNode();
 
-  FormGroup buildForm() => fb.group({
-        'input': FormControl<String>(value: 'some value'),
-      });
+  FormGroup buildForm() =>
+      fb.group({'input': FormControl<String>(value: 'some value')});
 
   @override
   void initState() {

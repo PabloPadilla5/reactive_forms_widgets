@@ -7,12 +7,12 @@ library;
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-typedef ControllerInitCallback = void Function(
-    TextEditingController controller);
+typedef ControllerInitCallback =
+    void Function(TextEditingController controller);
 
 /// A [ReactiveTextField] that contains a [TextField].
 ///
@@ -143,98 +143,97 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
     this.onControllerInit,
     Clip clipBehavior = Clip.hardEdge,
     bool enableIMEPersonalizedLearning = true,
-    bool scribbleEnabled = true,
+    bool stylusHandwritingEnabled =
+        EditableText.defaultStylusHandwritingEnabled,
     Widget Function(BuildContext context, String error)? errorBuilder,
   }) : super(
-          builder: (ReactiveFormFieldState<T, String> field) {
-            final state = field as _ReactiveTextFieldState<T>;
-            final effectiveDecoration = decoration
-                .applyDefaults(Theme.of(state.context).inputDecorationTheme);
+         builder: (ReactiveFormFieldState<T, String> field) {
+           final state = field as _ReactiveTextFieldState<T>;
+           final effectiveDecoration = decoration.applyDefaults(
+             Theme.of(state.context).inputDecorationTheme,
+           );
 
-            final errorText = field.errorText;
+           final errorText = field.errorText;
 
-            state._setFocusNode(focusNode);
+           state._setFocusNode(focusNode);
 
-            return TextField(
-              controller: state._textController,
-              focusNode: state.focusNode,
-              decoration: effectiveDecoration.copyWith(
-                errorText: errorBuilder == null ? field.errorText : null,
-                enabled: field.control.enabled,
-                error: errorBuilder != null && errorText != null
-                    ? DefaultTextStyle.merge(
-                        style: Theme.of(field.context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(
-                              color: Theme.of(field.context).colorScheme.error,
-                            )
-                            .merge(effectiveDecoration.errorStyle),
-                        child: errorBuilder.call(
-                          field.context,
-                          errorText,
-                        ),
-                      )
-                    : null,
-              ),
-              keyboardType: keyboardType,
-              textInputAction: textInputAction,
-              style: style,
-              strutStyle: strutStyle,
-              textAlign: textAlign,
-              textAlignVertical: textAlignVertical,
-              textDirection: textDirection,
-              textCapitalization: textCapitalization,
-              autofocus: autofocus,
-              readOnly: readOnly,
-              showCursor: showCursor,
-              obscureText: obscureText,
-              autocorrect: autocorrect,
-              smartDashesType: smartDashesType ??
-                  (obscureText
-                      ? SmartDashesType.disabled
-                      : SmartDashesType.enabled),
-              smartQuotesType: smartQuotesType ??
-                  (obscureText
-                      ? SmartQuotesType.disabled
-                      : SmartQuotesType.enabled),
-              enableSuggestions: enableSuggestions,
-              maxLengthEnforcement: maxLengthEnforcement,
-              maxLines: maxLines,
-              minLines: minLines,
-              expands: expands,
-              maxLength: maxLength,
-              onChanged: field.didChange,
-              onTap: onTap,
-              onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
-              onEditingComplete: onEditingComplete,
-              inputFormatters: inputFormatters,
-              enabled: field.control.enabled,
-              cursorWidth: cursorWidth,
-              cursorHeight: cursorHeight,
-              cursorRadius: cursorRadius,
-              cursorColor: cursorColor,
-              scrollPadding: scrollPadding,
-              scrollPhysics: scrollPhysics,
-              keyboardAppearance: keyboardAppearance,
-              enableInteractiveSelection: enableInteractiveSelection,
-              buildCounter: buildCounter,
-              autofillHints: autofillHints,
-              mouseCursor: mouseCursor,
-              obscuringCharacter: obscuringCharacter,
-              dragStartBehavior: dragStartBehavior,
-              onAppPrivateCommand: onAppPrivateCommand,
-              restorationId: restorationId,
-              scrollController: scrollController,
-              selectionControls: selectionControls,
-              selectionHeightStyle: selectionHeightStyle,
-              selectionWidthStyle: selectionWidthStyle,
-              clipBehavior: clipBehavior,
-              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
-              scribbleEnabled: scribbleEnabled,
-            );
-          },
-        );
+           return TextField(
+             controller: state._textController,
+             focusNode: state.focusNode,
+             decoration: effectiveDecoration.copyWith(
+               errorText: errorBuilder == null ? field.errorText : null,
+               enabled: field.control.enabled,
+               error: errorBuilder != null && errorText != null
+                   ? DefaultTextStyle.merge(
+                       style: Theme.of(field.context).textTheme.bodySmall
+                           ?.copyWith(
+                             color: Theme.of(field.context).colorScheme.error,
+                           )
+                           .merge(effectiveDecoration.errorStyle),
+                       child: errorBuilder.call(field.context, errorText),
+                     )
+                   : null,
+             ),
+             keyboardType: keyboardType,
+             textInputAction: textInputAction,
+             style: style,
+             strutStyle: strutStyle,
+             textAlign: textAlign,
+             textAlignVertical: textAlignVertical,
+             textDirection: textDirection,
+             textCapitalization: textCapitalization,
+             autofocus: autofocus,
+             readOnly: readOnly,
+             showCursor: showCursor,
+             obscureText: obscureText,
+             autocorrect: autocorrect,
+             smartDashesType:
+                 smartDashesType ??
+                 (obscureText
+                     ? SmartDashesType.disabled
+                     : SmartDashesType.enabled),
+             smartQuotesType:
+                 smartQuotesType ??
+                 (obscureText
+                     ? SmartQuotesType.disabled
+                     : SmartQuotesType.enabled),
+             enableSuggestions: enableSuggestions,
+             maxLengthEnforcement: maxLengthEnforcement,
+             maxLines: maxLines,
+             minLines: minLines,
+             expands: expands,
+             maxLength: maxLength,
+             onChanged: field.didChange,
+             onTap: onTap,
+             onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
+             onEditingComplete: onEditingComplete,
+             inputFormatters: inputFormatters,
+             enabled: field.control.enabled,
+             cursorWidth: cursorWidth,
+             cursorHeight: cursorHeight,
+             cursorRadius: cursorRadius,
+             cursorColor: cursorColor,
+             scrollPadding: scrollPadding,
+             scrollPhysics: scrollPhysics,
+             keyboardAppearance: keyboardAppearance,
+             enableInteractiveSelection: enableInteractiveSelection,
+             buildCounter: buildCounter,
+             autofillHints: autofillHints,
+             mouseCursor: mouseCursor,
+             obscuringCharacter: obscuringCharacter,
+             dragStartBehavior: dragStartBehavior,
+             onAppPrivateCommand: onAppPrivateCommand,
+             restorationId: restorationId,
+             scrollController: scrollController,
+             selectionControls: selectionControls,
+             selectionHeightStyle: selectionHeightStyle,
+             selectionWidthStyle: selectionWidthStyle,
+             clipBehavior: clipBehavior,
+             enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+             stylusHandwritingEnabled: stylusHandwritingEnabled,
+           );
+         },
+       );
 
   @override
   ReactiveFormFieldState<T, String> createState() =>
@@ -255,7 +254,8 @@ class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
 
     final initialValue = value;
     _textController = TextEditingController(
-        text: initialValue == null ? '' : initialValue.toString());
+      text: initialValue == null ? '' : initialValue.toString(),
+    );
 
     (widget as ReactiveTextField<T>).onControllerInit?.call(_textController);
   }
@@ -268,8 +268,9 @@ class _ReactiveTextFieldState<T> extends ReactiveFormFieldState<T, String> {
       control = newControl;
       subscribeControl();
       final initialValue = value;
-      _textController.text =
-          initialValue == null ? '' : initialValue.toString();
+      _textController.text = initialValue == null
+          ? ''
+          : initialValue.toString();
     }
 
     super.didUpdateWidget(oldWidget);
