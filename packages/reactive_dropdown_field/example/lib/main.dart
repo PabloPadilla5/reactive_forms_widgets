@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_dropdown_field/reactive_dropdown_field.dart';
 import 'package:reactive_forms/reactive_forms.dart' hide ReactiveDropdownField;
 
@@ -9,9 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  FormGroup buildForm() => fb.group({
-        'input': FormControl<bool>(value: null),
-      });
+  FormGroup buildForm() => fb.group({'input': FormControl<bool>(value: null)});
 
   @override
   Widget build(BuildContext context) {

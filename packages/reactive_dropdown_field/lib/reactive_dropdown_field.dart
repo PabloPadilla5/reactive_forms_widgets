@@ -4,7 +4,7 @@ library;
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 /// A reactive widget that wraps a [DropdownButton].
@@ -55,73 +55,75 @@ class ReactiveDropdownField<T, V> extends ReactiveFormField<T, V> {
     AlignmentDirectional alignment = AlignmentDirectional.centerStart,
     BorderRadius? borderRadius,
     EdgeInsetsGeometry? padding,
-  })  : assert(itemHeight == null || itemHeight > 0),
-        super(
-          builder: (field) {
-            final state = field as _ReactiveDropdownFieldState<T, V>;
+  }) : assert(itemHeight == null || itemHeight > 0),
+       super(
+         builder: (field) {
+           final state = field as _ReactiveDropdownFieldState<T, V>;
 
-            final effectiveDecoration = decoration.applyDefaults(
-              Theme.of(field.context).inputDecorationTheme,
-            );
+           final effectiveDecoration = decoration.applyDefaults(
+             Theme.of(field.context).inputDecorationTheme,
+           );
 
-            var effectiveValue = field.value;
-            if (effectiveValue != null &&
-                !items.any((item) => item.value == effectiveValue)) {
-              effectiveValue = null;
-            }
+           var effectiveValue = field.value;
+           if (effectiveValue != null &&
+               !items.any((item) => item.value == effectiveValue)) {
+             effectiveValue = null;
+           }
 
-            final isDisabled = readOnly || field.control.disabled;
-            var effectiveDisabledHint = disabledHint;
-            if (isDisabled && disabledHint == null) {
-              final selectedItemIndex =
-                  items.indexWhere((item) => item.value == effectiveValue);
-              if (selectedItemIndex > -1) {
-                effectiveDisabledHint = selectedItemBuilder != null
-                    ? selectedItemBuilder(field.context)
-                        .elementAt(selectedItemIndex)
-                    : items.elementAt(selectedItemIndex).child;
-              }
-            }
+           final isDisabled = readOnly || field.control.disabled;
+           var effectiveDisabledHint = disabledHint;
+           if (isDisabled && disabledHint == null) {
+             final selectedItemIndex = items.indexWhere(
+               (item) => item.value == effectiveValue,
+             );
+             if (selectedItemIndex > -1) {
+               effectiveDisabledHint = selectedItemBuilder != null
+                   ? selectedItemBuilder(
+                       field.context,
+                     ).elementAt(selectedItemIndex)
+                   : items.elementAt(selectedItemIndex).child;
+             }
+           }
 
-            return InputDecorator(
-              decoration: effectiveDecoration.copyWith(
-                errorText: field.errorText,
-                enabled: !isDisabled,
-              ),
-              isEmpty: effectiveValue == null,
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton<V>(
-                  value: effectiveValue,
-                  items: items,
-                  selectedItemBuilder: selectedItemBuilder,
-                  hint: hint,
-                  onChanged: isDisabled ? null : field.didChange,
-                  onTap: onTap,
-                  disabledHint: effectiveDisabledHint,
-                  elevation: elevation,
-                  style: style,
-                  icon: icon,
-                  iconDisabledColor: iconDisabledColor,
-                  iconEnabledColor: iconEnabledColor,
-                  iconSize: iconSize,
-                  isDense: isDense,
-                  isExpanded: isExpanded,
-                  itemHeight: itemHeight,
-                  focusNode: state._focusController.focusNode,
-                  dropdownColor: dropdownColor,
-                  focusColor: focusColor,
-                  underline: underline,
-                  autofocus: autofocus,
-                  menuMaxHeight: menuMaxHeight,
-                  enableFeedback: enableFeedback,
-                  alignment: alignment,
-                  borderRadius: borderRadius,
-                  padding: padding,
-                ),
-              ),
-            );
-          },
-        );
+           return InputDecorator(
+             decoration: effectiveDecoration.copyWith(
+               errorText: field.errorText,
+               enabled: !isDisabled,
+             ),
+             isEmpty: effectiveValue == null,
+             child: DropdownButtonHideUnderline(
+               child: DropdownButton<V>(
+                 value: effectiveValue,
+                 items: items,
+                 selectedItemBuilder: selectedItemBuilder,
+                 hint: hint,
+                 onChanged: isDisabled ? null : field.didChange,
+                 onTap: onTap,
+                 disabledHint: effectiveDisabledHint,
+                 elevation: elevation,
+                 style: style,
+                 icon: icon,
+                 iconDisabledColor: iconDisabledColor,
+                 iconEnabledColor: iconEnabledColor,
+                 iconSize: iconSize,
+                 isDense: isDense,
+                 isExpanded: isExpanded,
+                 itemHeight: itemHeight,
+                 focusNode: state._focusController.focusNode,
+                 dropdownColor: dropdownColor,
+                 focusColor: focusColor,
+                 underline: underline,
+                 autofocus: autofocus,
+                 menuMaxHeight: menuMaxHeight,
+                 enableFeedback: enableFeedback,
+                 alignment: alignment,
+                 borderRadius: borderRadius,
+                 padding: padding,
+               ),
+             ),
+           );
+         },
+       );
 
   @override
   ReactiveFormFieldState<T, V> createState() =>
