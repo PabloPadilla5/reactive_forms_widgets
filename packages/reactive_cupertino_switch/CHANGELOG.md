@@ -1,3 +1,11 @@
+## [5.0.0]
+
+### Breaking changes
+
+- Raise the minimum Flutter version to `3.44.0` and the Dart SDK to `^3.12.0`.
+- Require `reactive_forms` `>=19.0.0 <20.0.0`.
+- Migrate Cupertino widgets to `package:cupertino_ui`.
+
 ## [4.0.0]
 Mark control as touchable on switch press
 

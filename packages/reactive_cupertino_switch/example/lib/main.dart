@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_cupertino_switch/reactive_cupertino_switch.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   FormGroup buildForm() => fb.group({
-        'switch': FormControl<bool>(value: false),
-        'switchDisabled': FormControl<bool>(value: true, disabled: false),
-      });
+    'switch': FormControl<bool>(value: false),
+    'switchDisabled': FormControl<bool>(value: true, disabled: false),
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +32,7 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    ReactiveCupertinoSwitch<bool>(
-                      formControlName: 'switch',
-                    ),
+                    ReactiveCupertinoSwitch<bool>(formControlName: 'switch'),
                     ReactiveCupertinoSwitch<bool>(
                       formControlName: 'switchDisabled',
                     ),

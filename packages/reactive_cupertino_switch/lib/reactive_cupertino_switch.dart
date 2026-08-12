@@ -1,14 +1,10 @@
 library;
 
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter/gestures.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-enum MarkAsTouched {
-  none,
-  pointerUp,
-  pointerDown;
-}
+enum MarkAsTouched { none, pointerUp, pointerDown }
 
 /// A [ReactiveCupertinoSwitch] that contains a [CupertinoSwitch].
 ///
@@ -106,37 +102,37 @@ class ReactiveCupertinoSwitch<T> extends ReactiveFocusableFormField<T, bool> {
     double disabledOpacity = 0.5,
     MarkAsTouched markAsTouched = MarkAsTouched.pointerDown,
   }) : super(
-          builder: (field) {
-            return IgnorePointer(
-              ignoring: !field.control.enabled,
-              child: Listener(
-                onPointerDown: markAsTouched == MarkAsTouched.pointerDown
-                    ? (_) => field.control.markAsTouched()
-                    : null,
-                onPointerUp: markAsTouched == MarkAsTouched.pointerUp
-                    ? (_) => field.control.markAsTouched()
-                    : null,
-                child: Opacity(
-                  opacity: field.control.enabled ? 1 : disabledOpacity,
-                  child: CupertinoSwitch(
-                    key: widgetKey,
-                    value: field.value ?? false,
-                    onChanged: field.didChange,
-                    activeTrackColor: activeTrackColor,
-                    inactiveTrackColor: inactiveTrackColor,
-                    dragStartBehavior: dragStartBehavior,
-                    thumbColor: thumbColor,
-                    applyTheme: applyTheme,
-                    focusColor: focusColor,
-                    onLabelColor: onLabelColor,
-                    offLabelColor: offLabelColor,
-                    focusNode: field.focusNode,
-                    onFocusChange: onFocusChange,
-                    autofocus: autofocus,
-                  ),
-                ),
-              ),
-            );
-          },
-        );
+         builder: (field) {
+           return IgnorePointer(
+             ignoring: !field.control.enabled,
+             child: Listener(
+               onPointerDown: markAsTouched == MarkAsTouched.pointerDown
+                   ? (_) => field.control.markAsTouched()
+                   : null,
+               onPointerUp: markAsTouched == MarkAsTouched.pointerUp
+                   ? (_) => field.control.markAsTouched()
+                   : null,
+               child: Opacity(
+                 opacity: field.control.enabled ? 1 : disabledOpacity,
+                 child: CupertinoSwitch(
+                   key: widgetKey,
+                   value: field.value ?? false,
+                   onChanged: field.didChange,
+                   activeTrackColor: activeTrackColor,
+                   inactiveTrackColor: inactiveTrackColor,
+                   dragStartBehavior: dragStartBehavior,
+                   thumbColor: thumbColor,
+                   applyTheme: applyTheme,
+                   focusColor: focusColor,
+                   onLabelColor: onLabelColor,
+                   offLabelColor: offLabelColor,
+                   focusNode: field.focusNode,
+                   onFocusChange: onFocusChange,
+                   autofocus: autofocus,
+                 ),
+               ),
+             ),
+           );
+         },
+       );
 }
