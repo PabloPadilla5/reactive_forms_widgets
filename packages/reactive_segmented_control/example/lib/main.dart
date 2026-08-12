@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_segmented_control/reactive_segmented_control.dart';
 
@@ -9,9 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  FormGroup buildForm() => fb.group({
-        'input': FormControl<String>(value: 'a'),
-      });
+  FormGroup buildForm() => fb.group({'input': FormControl<String>(value: 'a')});
 
   @override
   Widget build(BuildContext context) {

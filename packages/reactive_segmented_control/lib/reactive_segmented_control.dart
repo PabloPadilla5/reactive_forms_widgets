@@ -3,8 +3,8 @@ library;
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 /// A [ReactiveSegmentedControl] that contains a [CupertinoSegmentedControl].
@@ -96,33 +96,34 @@ class ReactiveSegmentedControl<T extends Object, K extends Object>
     Color? pressedColor,
     EdgeInsets? padding,
   }) : super(
-          builder: (field) {
-            final InputDecoration effectiveDecoration = (decoration ??
-                    const InputDecoration())
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+         builder: (field) {
+           final InputDecoration effectiveDecoration =
+               (decoration ?? const InputDecoration()).applyDefaults(
+                 Theme.of(field.context).inputDecorationTheme,
+               );
 
-            return IgnorePointer(
-              ignoring: !field.control.enabled,
-              child: Listener(
-                onPointerDown: (_) => field.control.markAsTouched(),
-                child: InputDecorator(
-                  decoration: effectiveDecoration.copyWith(
-                    errorText: field.errorText,
-                    enabled: field.control.enabled,
-                  ),
-                  child: CupertinoSegmentedControl<K>(
-                    children: children,
-                    onValueChanged: field.didChange,
-                    groupValue: field.value,
-                    unselectedColor: unselectedColor,
-                    selectedColor: selectedColor,
-                    borderColor: borderColor,
-                    pressedColor: pressedColor,
-                    padding: padding,
-                  ),
-                ),
-              ),
-            );
-          },
-        );
+           return IgnorePointer(
+             ignoring: !field.control.enabled,
+             child: Listener(
+               onPointerDown: (_) => field.control.markAsTouched(),
+               child: InputDecorator(
+                 decoration: effectiveDecoration.copyWith(
+                   errorText: field.errorText,
+                   enabled: field.control.enabled,
+                 ),
+                 child: CupertinoSegmentedControl<K>(
+                   children: children,
+                   onValueChanged: field.didChange,
+                   groupValue: field.value,
+                   unselectedColor: unselectedColor,
+                   selectedColor: selectedColor,
+                   borderColor: borderColor,
+                   pressedColor: pressedColor,
+                   padding: padding,
+                 ),
+               ),
+             ),
+           );
+         },
+       );
 }
