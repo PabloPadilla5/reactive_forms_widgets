@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_dropdown_menu/reactive_dropdown_menu.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -9,9 +9,8 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  FormGroup buildForm() => fb.group({
-        'input': FormControl<ColorLabel>(value: null),
-      });
+  FormGroup buildForm() =>
+      fb.group({'input': FormControl<ColorLabel>(value: null)});
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +36,9 @@ class MyApp extends StatelessWidget {
                     ReactiveDropdownMenu<ColorLabel, ColorLabel>(
                       formControlName: 'input',
                       dropdownMenuEntries: ColorLabel.values
-                          .map<DropdownMenuEntry<ColorLabel>>(
-                              (ColorLabel color) {
+                          .map<DropdownMenuEntry<ColorLabel>>((
+                            ColorLabel color,
+                          ) {
                             return DropdownMenuEntry<ColorLabel>(
                               value: color,
                               label: color.label,
@@ -47,7 +47,8 @@ class MyApp extends StatelessWidget {
                                 foregroundColor: color.color,
                               ),
                             );
-                          }).toList(),
+                          })
+                          .toList(),
                     ),
                     ElevatedButton(
                       child: const Text('Submit'),
@@ -83,10 +84,7 @@ enum ColorLabel {
 // DropdownMenuEntry labels and values for the second dropdown menu.
 enum IconLabel {
   smile('Smile', Icons.sentiment_satisfied_outlined),
-  cloud(
-    'Cloud',
-    Icons.cloud_outlined,
-  ),
+  cloud('Cloud', Icons.cloud_outlined),
   brush('Brush', Icons.brush_outlined),
   heart('Heart', Icons.favorite);
 

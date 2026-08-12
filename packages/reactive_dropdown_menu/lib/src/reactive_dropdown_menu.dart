@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 /// A [ReactiveDropdownMenu] that contains a [DropdownMenu].
@@ -74,13 +74,13 @@ class ReactiveDropdownMenu<T, V> extends ReactiveFocusableFormField<T, V> {
   /// For documentation about the various parameters, see the [DropdownMenu] class
   /// and [DropdownMenu], the constructor.
   ReactiveDropdownMenu({
-    Key? key,
+    super.key,
     Key? widgetKey,
-    String? formControlName,
-    FormControl<T>? formControl,
-    Map<String, ValidationMessageFunction>? validationMessages,
-    ControlValueAccessor<T, V>? valueAccessor,
-    ShowErrorsFunction<T>? showErrors,
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
     super.focusNode,
 
     //////////////////////////////////////////////////////////////////////////
@@ -106,40 +106,34 @@ class ReactiveDropdownMenu<T, V> extends ReactiveFocusableFormField<T, V> {
     SearchCallback<V>? searchCallback,
     List<TextInputFormatter>? inputFormatters,
   }) : super(
-          key: key,
-          formControl: formControl,
-          formControlName: formControlName,
-          valueAccessor: valueAccessor,
-          validationMessages: validationMessages,
-          showErrors: showErrors,
-          builder: (field) {
-            return DropdownMenu<V>(
-              key: widgetKey,
-              enabled: field.control.enabled,
-              width: width,
-              menuHeight: menuHeight,
-              leadingIcon: leadingIcon,
-              trailingIcon: trailingIcon,
-              label: label,
-              hintText: hintText,
-              helperText: helperText,
-              errorText: field.errorText,
-              selectedTrailingIcon: selectedTrailingIcon,
-              enableFilter: enableFilter,
-              enableSearch: enableSearch,
-              textStyle: textStyle,
-              inputDecorationTheme: inputDecorationTheme,
-              menuStyle: menuStyle,
-              controller: controller,
-              initialSelection: field.value,
-              onSelected: field.didChange,
-              focusNode: field.focusNode,
-              requestFocusOnTap: requestFocusOnTap,
-              dropdownMenuEntries: dropdownMenuEntries,
-              expandedInsets: expandedInsets,
-              searchCallback: searchCallback,
-              inputFormatters: inputFormatters,
-            );
-          },
-        );
+         builder: (field) {
+           return DropdownMenu<V>(
+             key: widgetKey,
+             enabled: field.control.enabled,
+             width: width,
+             menuHeight: menuHeight,
+             leadingIcon: leadingIcon,
+             trailingIcon: trailingIcon,
+             label: label,
+             hintText: hintText,
+             helperText: helperText,
+             errorText: field.errorText,
+             selectedTrailingIcon: selectedTrailingIcon,
+             enableFilter: enableFilter,
+             enableSearch: enableSearch,
+             textStyle: textStyle,
+             inputDecorationTheme: inputDecorationTheme,
+             menuStyle: menuStyle,
+             controller: controller,
+             initialSelection: field.value,
+             onSelected: field.didChange,
+             focusNode: field.focusNode,
+             requestFocusOnTap: requestFocusOnTap,
+             dropdownMenuEntries: dropdownMenuEntries,
+             expandedInsets: expandedInsets,
+             searchCallback: searchCallback,
+             inputFormatters: inputFormatters,
+           );
+         },
+       );
 }
