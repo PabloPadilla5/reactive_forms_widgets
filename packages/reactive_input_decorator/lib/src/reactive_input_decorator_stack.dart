@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_input_decorator/reactive_input_decorator.dart';
 
@@ -94,57 +94,56 @@ class ReactiveInputDecoratorStack
     Widget Function(BuildContext context, String error)? errorBuilder,
     MarkAsTouched markAsTouched = MarkAsTouched.pointerDown,
   }) : super(
-          builder: (field) {
-            final effectiveDecoration = (decoration ?? const InputDecoration())
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+         builder: (field) {
+           final effectiveDecoration = (decoration ?? const InputDecoration())
+               .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-            final errorText = field.errorText;
+           final errorText = field.errorText;
 
-            return IgnorePointer(
-              ignoring: !field.control.enabled,
-              child: Listener(
-                onPointerDown: markAsTouched == MarkAsTouched.pointerDown
-                    ? (_) => field.control.markAsTouched()
-                    : null,
-                onPointerUp: markAsTouched == MarkAsTouched.pointerUp
-                    ? (_) => field.control.markAsTouched()
-                    : null,
-                child: Stack(
-                  children: [
-                    InputDecorator(
-                      decoration: effectiveDecoration.copyWith(
-                        errorText:
-                            errorBuilder == null ? field.errorText : null,
-                        enabled: field.control.enabled,
-                        error: errorBuilder != null && errorText != null
-                            ? DefaultTextStyle.merge(
-                                style: Theme.of(field.context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(
-                                      color: Theme.of(field.context)
-                                          .colorScheme
-                                          .error,
-                                    )
-                                    .merge(effectiveDecoration.errorStyle),
-                                child: errorBuilder.call(
-                                  field.context,
-                                  errorText,
-                                ),
-                              )
-                            : null,
-                      ),
-                      expands: expands,
-                      baseStyle: baseStyle,
-                      textAlign: textAlign,
-                      textAlignVertical: textAlignVertical,
-                      child: child,
-                    ),
-                    ...children
-                  ],
-                ),
-              ),
-            );
-          },
-        );
+           return IgnorePointer(
+             ignoring: !field.control.enabled,
+             child: Listener(
+               onPointerDown: markAsTouched == MarkAsTouched.pointerDown
+                   ? (_) => field.control.markAsTouched()
+                   : null,
+               onPointerUp: markAsTouched == MarkAsTouched.pointerUp
+                   ? (_) => field.control.markAsTouched()
+                   : null,
+               child: Stack(
+                 children: [
+                   InputDecorator(
+                     decoration: effectiveDecoration.copyWith(
+                       errorText: errorBuilder == null ? field.errorText : null,
+                       enabled: field.control.enabled,
+                       error: errorBuilder != null && errorText != null
+                           ? DefaultTextStyle.merge(
+                               style: Theme.of(field.context)
+                                   .textTheme
+                                   .bodySmall
+                                   ?.copyWith(
+                                     color: Theme.of(
+                                       field.context,
+                                     ).colorScheme.error,
+                                   )
+                                   .merge(effectiveDecoration.errorStyle),
+                               child: errorBuilder.call(
+                                 field.context,
+                                 errorText,
+                               ),
+                             )
+                           : null,
+                     ),
+                     expands: expands,
+                     baseStyle: baseStyle,
+                     textAlign: textAlign,
+                     textAlignVertical: textAlignVertical,
+                     child: child,
+                   ),
+                   ...children,
+                 ],
+               ),
+             ),
+           );
+         },
+       );
 }

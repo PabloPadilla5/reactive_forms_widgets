@@ -4,14 +4,14 @@
 
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-typedef ReactiveFormFieldAbstractBuilder<T, K> = Widget Function(
-    ReactiveFormFieldAbstractState<T, K> field);
+typedef ReactiveFormFieldAbstractBuilder<T, K> =
+    Widget Function(ReactiveFormFieldAbstractState<T, K> field);
 
-typedef ShowErrorsAbstractFunction<T> = bool Function(
-    AbstractControl<T> control);
+typedef ShowErrorsAbstractFunction<T> =
+    bool Function(AbstractControl<T> control);
 
 /// A single reactive form field.
 ///
@@ -60,12 +60,14 @@ class ReactiveFormFieldAbstract<ModelDataType, ViewDataType>
     this.validationMessages,
     this.focusNode,
     required ReactiveFormFieldAbstractBuilder<ModelDataType, ViewDataType>
-        builder,
-  })  : assert(
-            (formControlName != null && formControl == null) ||
-                (formControlName == null && formControl != null),
-            'Must provide a formControlName or a formControl, but not both at the same time.'),
-        _builder = builder;
+    builder,
+  }) : assert(
+         (formControlName != null && formControl == null) ||
+             (formControlName == null && formControl != null),
+         'Must provide a formControlName or a formControl, but not both at the same time.',
+       ),
+       // ignore: prefer_initializing_formals
+       _builder = builder;
 
   @override
   ReactiveFormFieldAbstractState<ModelDataType, ViewDataType> createState() =>
@@ -143,7 +145,8 @@ class ReactiveFormFieldAbstractState<ModelDataType, ViewDataType>
 
   @override
   void didUpdateWidget(
-      ReactiveFormFieldAbstract<ModelDataType, ViewDataType> oldWidget) {
+    ReactiveFormFieldAbstract<ModelDataType, ViewDataType> oldWidget,
+  ) {
     // if (widget.valueAccessor != null && widget.valueAccessor != valueAccessor) {
     //   valueAccessor.dispose();
     //   _valueAccessor = widget.valueAccessor!;
@@ -175,10 +178,12 @@ class ReactiveFormFieldAbstractState<ModelDataType, ViewDataType>
   @protected
   @mustCallSuper
   void subscribeControl() {
-    _statusChangesSubscription =
-        control.statusChanged.listen(_onControlStatusChanged);
-    _touchChangesSubscription =
-        control.touchChanges.listen(_onControlTouchChanged);
+    _statusChangesSubscription = control.statusChanged.listen(
+      _onControlStatusChanged,
+    );
+    _touchChangesSubscription = control.touchChanges.listen(
+      _onControlTouchChanged,
+    );
     _subscribeValueAccessor();
   }
 

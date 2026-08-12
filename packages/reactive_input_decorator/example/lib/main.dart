@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_input_decorator/reactive_input_decorator.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -10,17 +10,18 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   FormGroup buildForm() => fb.group({
-        'input': FormControl<bool>(
-          value: null,
-          validators: [const RequiredValidator()],
-        ),
-        'inputArray': FormArray<String>([
-          FormControl<String>(value: 'john@email.com'),
-          FormControl<String>(value: 'susan@email.com'),
-        ], validators: [
-          const MinLengthValidator(1),
-        ]),
-      });
+    'input': FormControl<bool>(
+      value: null,
+      validators: [const RequiredValidator()],
+    ),
+    'inputArray': FormArray<String>(
+      [
+        FormControl<String>(value: 'john@email.com'),
+        FormControl<String>(value: 'susan@email.com'),
+      ],
+      validators: [const MinLengthValidator(1)],
+    ),
+  });
 
   @override
   Widget build(BuildContext context) {

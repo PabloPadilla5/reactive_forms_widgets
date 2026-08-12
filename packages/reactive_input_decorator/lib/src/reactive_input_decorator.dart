@@ -1,14 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'abstract_form_field.dart';
 import 'hover_builder.dart';
 
-enum MarkAsTouched {
-  none,
-  pointerUp,
-  pointerDown;
-}
+enum MarkAsTouched { none, pointerUp, pointerDown }
 
 const decorationInvisible = InputDecoration(
   border: InputBorder.none,
@@ -112,59 +108,63 @@ class ReactiveInputDecorator
     MarkAsTouched markAsTouched = MarkAsTouched.pointerDown,
     MouseCursor cursor = SystemMouseCursors.click,
   }) : super(
-          builder: (field) {
-            final effectiveDecoration = (decoration ?? const InputDecoration())
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+         builder: (field) {
+           final effectiveDecoration = (decoration ?? const InputDecoration())
+               .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-            final errorText = field.errorText;
+           final errorText = field.errorText;
 
-            return IgnorePointer(
-              ignoring: !field.control.enabled,
-              child: Listener(
-                onPointerDown: markAsTouched == MarkAsTouched.pointerDown
-                    ? (_) => field.control.markAsTouched()
-                    : null,
-                onPointerUp: markAsTouched == MarkAsTouched.pointerUp
-                    ? (_) => field.control.markAsTouched()
-                    : null,
-                child: HoverBuilder(builder: (context, isHovered) {
-                  return MouseRegion(
-                    cursor: cursor,
-                    child: InputDecorator(
-                      decoration: effectiveDecoration.copyWith(
-                          errorText:
-                              errorBuilder == null ? field.errorText : null,
-                          enabled: field.control.enabled,
-                          error: errorBuilder != null && errorText != null
-                              ? DefaultTextStyle.merge(
-                                  style: Theme.of(field.context)
-                                      .textTheme
-                                      .bodySmall
-                                      ?.copyWith(
-                                        color: Theme.of(field.context)
-                                            .colorScheme
-                                            .error,
-                                      )
-                                      .merge(effectiveDecoration.errorStyle),
-                                  child: errorBuilder.call(
-                                    field.context,
-                                    errorText,
-                                  ),
-                                )
-                              : null),
-                      expands: expands,
-                      baseStyle: baseStyle,
-                      textAlign: textAlign,
-                      textAlignVertical: textAlignVertical,
-                      isFocused: field.focusNode?.hasFocus ?? false,
-                      child: child,
-                    ),
-                  );
-                }),
-              ),
-            );
-          },
-        );
+           return IgnorePointer(
+             ignoring: !field.control.enabled,
+             child: Listener(
+               onPointerDown: markAsTouched == MarkAsTouched.pointerDown
+                   ? (_) => field.control.markAsTouched()
+                   : null,
+               onPointerUp: markAsTouched == MarkAsTouched.pointerUp
+                   ? (_) => field.control.markAsTouched()
+                   : null,
+               child: HoverBuilder(
+                 builder: (context, isHovered) {
+                   return MouseRegion(
+                     cursor: cursor,
+                     child: InputDecorator(
+                       decoration: effectiveDecoration.copyWith(
+                         errorText: errorBuilder == null
+                             ? field.errorText
+                             : null,
+                         enabled: field.control.enabled,
+                         error: errorBuilder != null && errorText != null
+                             ? DefaultTextStyle.merge(
+                                 style: Theme.of(field.context)
+                                     .textTheme
+                                     .bodySmall
+                                     ?.copyWith(
+                                       color: Theme.of(
+                                         field.context,
+                                       ).colorScheme.error,
+                                     )
+                                     .merge(effectiveDecoration.errorStyle),
+                                 child: errorBuilder.call(
+                                   field.context,
+                                   errorText,
+                                 ),
+                               )
+                             : null,
+                       ),
+                       expands: expands,
+                       baseStyle: baseStyle,
+                       textAlign: textAlign,
+                       textAlignVertical: textAlignVertical,
+                       isFocused: field.focusNode?.hasFocus ?? false,
+                       child: child,
+                     ),
+                   );
+                 },
+               ),
+             ),
+           );
+         },
+       );
 }
 
 class ReactiveArrayDecorator
@@ -186,51 +186,47 @@ class ReactiveArrayDecorator
     Widget Function(BuildContext context, String error)? errorBuilder,
     MarkAsTouched markAsTouched = MarkAsTouched.pointerDown,
   }) : super(
-          builder: (field) {
-            final effectiveDecoration = (decoration ?? const InputDecoration())
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+         builder: (field) {
+           final effectiveDecoration = (decoration ?? const InputDecoration())
+               .applyDefaults(Theme.of(field.context).inputDecorationTheme);
 
-            final errorText = field.errorText;
+           final errorText = field.errorText;
 
-            return IgnorePointer(
-              ignoring: !field.control.enabled,
-              child: Listener(
-                onPointerDown: markAsTouched == MarkAsTouched.pointerDown
-                    ? (_) => field.control.markAsTouched()
-                    : null,
-                onPointerUp: markAsTouched == MarkAsTouched.pointerUp
-                    ? (_) => field.control.markAsTouched()
-                    : null,
-                child: InputDecorator(
-                  decoration: effectiveDecoration.copyWith(
-                      errorText: errorBuilder == null ? field.errorText : null,
-                      enabled: field.control.enabled,
-                      error: errorBuilder != null && errorText != null
-                          ? DefaultTextStyle.merge(
-                              style: Theme.of(field.context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color: Theme.of(field.context)
-                                        .colorScheme
-                                        .error,
-                                  )
-                                  .merge(effectiveDecoration.errorStyle),
-                              child: errorBuilder.call(
-                                field.context,
-                                errorText,
-                              ),
-                            )
-                          : null),
-                  expands: expands,
-                  baseStyle: baseStyle,
-                  textAlign: textAlign,
-                  textAlignVertical: textAlignVertical,
-                  isFocused: field.focusNode?.hasFocus ?? false,
-                  child: child,
-                ),
-              ),
-            );
-          },
-        );
+           return IgnorePointer(
+             ignoring: !field.control.enabled,
+             child: Listener(
+               onPointerDown: markAsTouched == MarkAsTouched.pointerDown
+                   ? (_) => field.control.markAsTouched()
+                   : null,
+               onPointerUp: markAsTouched == MarkAsTouched.pointerUp
+                   ? (_) => field.control.markAsTouched()
+                   : null,
+               child: InputDecorator(
+                 decoration: effectiveDecoration.copyWith(
+                   errorText: errorBuilder == null ? field.errorText : null,
+                   enabled: field.control.enabled,
+                   error: errorBuilder != null && errorText != null
+                       ? DefaultTextStyle.merge(
+                           style: Theme.of(field.context).textTheme.bodySmall
+                               ?.copyWith(
+                                 color: Theme.of(
+                                   field.context,
+                                 ).colorScheme.error,
+                               )
+                               .merge(effectiveDecoration.errorStyle),
+                           child: errorBuilder.call(field.context, errorText),
+                         )
+                       : null,
+                 ),
+                 expands: expands,
+                 baseStyle: baseStyle,
+                 textAlign: textAlign,
+                 textAlignVertical: textAlignVertical,
+                 isFocused: field.focusNode?.hasFocus ?? false,
+                 child: child,
+               ),
+             ),
+           );
+         },
+       );
 }
