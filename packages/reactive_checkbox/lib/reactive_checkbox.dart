@@ -4,7 +4,7 @@ library;
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 /// This is a convenience widget that wraps a [Checkbox] widget in a
@@ -50,34 +50,34 @@ class ReactiveCheckbox<T> extends ReactiveFormField<T, bool> {
     BorderSide? side,
     String? semanticLabel,
   }) : super(
-          builder: (field) {
-            final state = field as _ReactiveCheckboxState<T, bool>;
+         builder: (field) {
+           final state = field as _ReactiveCheckboxState<T, bool>;
 
-            state._setFocusNode(focusNode);
+           state._setFocusNode(focusNode);
 
-            return Checkbox(
-              value: tristate ? field.value : field.value ?? false,
-              tristate: tristate,
-              onChanged: field.control.enabled ? field.didChange : null,
-              mouseCursor: mouseCursor,
-              activeColor: activeColor,
-              checkColor: checkColor,
-              focusColor: focusColor,
-              hoverColor: hoverColor,
-              materialTapTargetSize: materialTapTargetSize,
-              visualDensity: visualDensity,
-              autofocus: autofocus,
-              fillColor: fillColor,
-              overlayColor: overlayColor,
-              splashRadius: splashRadius,
-              focusNode: state.focusNode,
-              shape: shape,
-              side: side,
-              isError: state.control.hasErrors,
-              semanticLabel: semanticLabel,
-            );
-          },
-        );
+           return Checkbox(
+             value: tristate ? field.value : field.value ?? false,
+             tristate: tristate,
+             onChanged: field.control.enabled ? field.didChange : null,
+             mouseCursor: mouseCursor,
+             activeColor: activeColor,
+             checkColor: checkColor,
+             focusColor: focusColor,
+             hoverColor: hoverColor,
+             materialTapTargetSize: materialTapTargetSize,
+             visualDensity: visualDensity,
+             autofocus: autofocus,
+             fillColor: fillColor,
+             overlayColor: overlayColor,
+             splashRadius: splashRadius,
+             focusNode: state.focusNode,
+             shape: shape,
+             side: side,
+             isError: state.control.hasErrors,
+             semanticLabel: semanticLabel,
+           );
+         },
+       );
 
   @override
   ReactiveFormFieldState<T, bool> createState() =>

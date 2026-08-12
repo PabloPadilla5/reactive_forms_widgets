@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_checkbox/reactive_checkbox.dart';
 import 'package:reactive_forms/reactive_forms.dart' hide ReactiveCheckbox;
 
@@ -9,9 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  FormGroup buildForm() => fb.group({
-        'input': FormControl<bool>(value: null),
-      });
+  FormGroup buildForm() => fb.group({'input': FormControl<bool>(value: null)});
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +33,7 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    ReactiveCheckbox<bool>(
-                      formControlName: 'input',
-                    ),
+                    ReactiveCheckbox<bool>(formControlName: 'input'),
                     ElevatedButton(
                       child: const Text('Sign Up'),
                       onPressed: () {
