@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_raw_autocomplete/reactive_raw_autocomplete.dart';
 
@@ -6,18 +6,13 @@ void main() {
   runApp(const MyApp());
 }
 
-List<String> _options = <String>[
-  'aardvark',
-  'bobcat',
-  'chameleon',
-];
+List<String> _options = <String>['aardvark', 'bobcat', 'chameleon'];
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  FormGroup buildForm() => fb.group({
-        'input': FormControl<String>(value: null),
-      });
+  FormGroup buildForm() =>
+      fb.group({'input': FormControl<String>(value: null)});
 
   // This widget is the root of your application.
   @override
@@ -47,44 +42,49 @@ class MyApp extends StatelessWidget {
                       // options: _options,
                       optionsBuilder: (TextEditingValue textEditingValue) {
                         return _options.where((String option) {
-                          return option
-                              .contains(textEditingValue.text.toLowerCase());
+                          return option.contains(
+                            textEditingValue.text.toLowerCase(),
+                          );
                         });
                       },
                       autocompleteOnSubmit: true,
-                      optionsViewBuilder: (BuildContext context,
-                          AutocompleteOnSelected<String> onSelected,
-                          Iterable<String> options) {
-                        final selectedIndex =
-                            AutocompleteHighlightedOption.of(context);
+                      optionsViewBuilder:
+                          (
+                            BuildContext context,
+                            AutocompleteOnSelected<String> onSelected,
+                            Iterable<String> options,
+                          ) {
+                            final selectedIndex =
+                                AutocompleteHighlightedOption.of(context);
 
-                        return Align(
-                          alignment: Alignment.topLeft,
-                          child: Material(
-                            elevation: 4.0,
-                            child: SizedBox(
-                              height: 200.0,
-                              child: ListView.builder(
-                                padding: const EdgeInsets.all(8.0),
-                                itemCount: options.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  final String option =
-                                      options.elementAt(index);
-                                  return GestureDetector(
-                                    onTap: () {
-                                      onSelected(option);
-                                    },
-                                    child: ListTile(
-                                      title: Text(option),
-                                      selected: selectedIndex == index,
-                                    ),
-                                  );
-                                },
+                            return Align(
+                              alignment: Alignment.topLeft,
+                              child: Material(
+                                elevation: 4.0,
+                                child: SizedBox(
+                                  height: 200.0,
+                                  child: ListView.builder(
+                                    padding: const EdgeInsets.all(8.0),
+                                    itemCount: options.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                          final String option = options
+                                              .elementAt(index);
+                                          return GestureDetector(
+                                            onTap: () {
+                                              onSelected(option);
+                                            },
+                                            child: ListTile(
+                                              title: Text(option),
+                                              selected: selectedIndex == index,
+                                            ),
+                                          );
+                                        },
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        );
-                      },
+                            );
+                          },
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
