@@ -109,7 +109,7 @@ class ReactiveDropdownMenu<T, V> extends ReactiveFocusableFormField<T, V> {
          builder: (field) {
            return DropdownMenu<V>(
              key: widgetKey,
-             enabled: field.control.enabled,
+             enabled: enabled && field.control.enabled,
              width: width,
              menuHeight: menuHeight,
              leadingIcon: leadingIcon,
@@ -126,7 +126,10 @@ class ReactiveDropdownMenu<T, V> extends ReactiveFocusableFormField<T, V> {
              menuStyle: menuStyle,
              controller: controller,
              initialSelection: field.value,
-             onSelected: field.didChange,
+             onSelected: (value) {
+               field.didChange(value);
+               onSelected?.call(value);
+             },
              focusNode: field.focusNode,
              requestFocusOnTap: requestFocusOnTap,
              dropdownMenuEntries: dropdownMenuEntries,
