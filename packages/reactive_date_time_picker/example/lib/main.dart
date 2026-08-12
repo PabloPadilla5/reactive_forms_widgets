@@ -1,5 +1,5 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   FormGroup buildForm() => fb.group({
-        'date': FormControl<DateTime>(value: DateTime.now(), disabled: true),
-        'time': FormControl<DateTime>(value: DateTime.now()),
-        'dateTime': FormControl<DateTime>(value: DateTime.now()),
-        'dateTimeNullable': FormControl<DateTime>(value: null),
-      });
+    'date': FormControl<DateTime>(value: DateTime.now(), disabled: true),
+    'time': FormControl<DateTime>(value: DateTime.now()),
+    'dateTime': FormControl<DateTime>(value: DateTime.now()),
+    'dateTimeNullable': FormControl<DateTime>(value: null),
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -95,12 +95,13 @@ class MyApp extends StatelessWidget {
                         ),
                         Expanded(
                           child: TextField(
-                              decoration: const InputDecoration(
-                            labelText: 'Date & Time',
-                            border: OutlineInputBorder(),
-                            helperText: '',
-                            suffixIcon: Icon(Icons.calendar_today),
-                          )),
+                            decoration: const InputDecoration(
+                              labelText: 'Date & Time',
+                              border: OutlineInputBorder(),
+                              helperText: '',
+                              suffixIcon: Icon(Icons.calendar_today),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -114,11 +115,9 @@ class MyApp extends StatelessWidget {
                         border: OutlineInputBorder(),
                         helperText: 'helperText',
                         suffixIcon: Icon(Icons.calendar_today),
-                        
                       ),
                       firstDate: DateTime.now(),
                       lastDate: DateTime.now().add(Duration(days: 1)),
-                      
                     ),
                     const SizedBox(height: 8),
                     ReactiveDateTimePicker(
@@ -140,9 +139,9 @@ class MyApp extends StatelessWidget {
                       child: const Text('Sign Up'),
                       onPressed: () {
                         showTimePicker(
-                            context: context,
-                            initialTime:
-                                TimeOfDay.fromDateTime(DateTime.now()));
+                          context: context,
+                          initialTime: TimeOfDay.fromDateTime(DateTime.now()),
+                        );
                         if (form.valid) {
                           // ignore: avoid_print
                           print(form.value);
@@ -214,9 +213,7 @@ CalendarDatePicker2WithActionButtonsConfig calendarConfig(
 }) {
   final primaryColor = Theme.of(context).primaryColor;
 
-  const dayTextStyle = TextStyle(
-    fontWeight: FontWeight.w700,
-  );
+  const dayTextStyle = TextStyle(fontWeight: FontWeight.w700);
 
   final firstDay = firstDate?.startOfDay();
   final lastDay = lastDate?.startOfDay();
@@ -250,11 +247,7 @@ CalendarDatePicker2WithActionButtonsConfig calendarConfig(
       size: 20,
       color: primaryColor,
     ),
-    lastMonthIcon: Icon(
-      Icons.arrow_circle_left,
-      size: 20,
-      color: primaryColor,
-    ),
+    lastMonthIcon: Icon(Icons.arrow_circle_left, size: 20, color: primaryColor),
     todayTextStyle: dayTextStyle.merge(TextStyle(color: primaryColor)),
   );
 }
