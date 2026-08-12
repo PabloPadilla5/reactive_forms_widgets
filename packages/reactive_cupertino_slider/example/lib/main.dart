@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_cupertino_slider/reactive_cupertino_slider.dart';
 
 import 'package:reactive_forms/reactive_forms.dart';
@@ -10,9 +10,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  FormGroup buildForm() => fb.group({
-        'switch': FormControl<double>(value: 0),
-      });
+  FormGroup buildForm() => fb.group({'switch': FormControl<double>(value: 0)});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +30,7 @@ class MyApp extends StatelessWidget {
               builder: (context, form, child) {
                 return Column(
                   children: [
-                    ReactiveCupertinoSlider<double>(
-                      formControlName: 'switch',
-                    ),
+                    ReactiveCupertinoSlider<double>(formControlName: 'switch'),
                     const SizedBox(height: 16),
                     ElevatedButton(
                       child: const Text('Sign Up'),

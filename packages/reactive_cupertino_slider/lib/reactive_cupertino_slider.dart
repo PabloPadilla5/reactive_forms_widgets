@@ -1,7 +1,7 @@
 library;
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 // typedef ReactiveRangeSliderLabelBuilder = RangeLabels Function(RangeValues);
@@ -46,34 +46,35 @@ class ReactiveCupertinoSlider<T> extends ReactiveFormField<T, double> {
     Color? activeColor,
     Color thumbColor = CupertinoColors.white,
   }) : super(
-          builder: (field) {
-            final InputDecoration effectiveDecoration = decoration
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+         builder: (field) {
+           final InputDecoration effectiveDecoration = decoration.applyDefaults(
+             Theme.of(field.context).inputDecorationTheme,
+           );
 
-            return Listener(
-              onPointerDown: (_) {
-                if (field.control.enabled) {
-                  field.control.markAsTouched();
-                }
-              },
-              child: InputDecorator(
-                decoration: effectiveDecoration.copyWith(
-                  errorText: field.errorText,
-                  enabled: field.control.enabled,
-                ),
-                child: CupertinoSlider(
-                  value: field.value ?? 0.0,
-                  onChanged: field.didChange,
-                  onChangeStart: onChangeStart,
-                  onChangeEnd: onChangeEnd,
-                  min: min = 0.0,
-                  max: max = 1.0,
-                  divisions: divisions,
-                  activeColor: activeColor,
-                  thumbColor: thumbColor,
-                ),
-              ),
-            );
-          },
-        );
+           return Listener(
+             onPointerDown: (_) {
+               if (field.control.enabled) {
+                 field.control.markAsTouched();
+               }
+             },
+             child: InputDecorator(
+               decoration: effectiveDecoration.copyWith(
+                 errorText: field.errorText,
+                 enabled: field.control.enabled,
+               ),
+               child: CupertinoSlider(
+                 value: field.value ?? 0.0,
+                 onChanged: field.didChange,
+                 onChangeStart: onChangeStart,
+                 onChangeEnd: onChangeEnd,
+                 min: min = 0.0,
+                 max: max = 1.0,
+                 divisions: divisions,
+                 activeColor: activeColor,
+                 thumbColor: thumbColor,
+               ),
+             ),
+           );
+         },
+       );
 }
