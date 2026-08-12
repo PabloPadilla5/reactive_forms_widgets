@@ -12,6 +12,14 @@
 - Call the user-provided `onSelected` callback after updating the control.
 - Honor the `enabled` constructor argument in addition to the control status.
 
+### Features
+
+- Forward missing `DropdownMenu` parameters: `showTrailingIcon`,
+  `trailingIconFocusNode`, `keyboardType`, `textAlign`, `decorationBuilder`,
+  `filterCallback`, `alignmentOffset`, `closeBehavior`, `maxLines`,
+  `textInputAction`, `cursorHeight`, `restorationId`, `menuController`,
+  `scrollPadding`, and `selectOnly`.
+
 ## 0.0.2
 
 * Support `reactive_forms: 18.x`
