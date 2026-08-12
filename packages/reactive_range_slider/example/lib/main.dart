@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_range_slider/reactive_range_slider.dart';
 
@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   FormGroup buildForm() => fb.group({
-        'input': FormControl<RangeValues>(value: const RangeValues(0, 10)),
-      });
+    'input': FormControl<RangeValues>(value: const RangeValues(0, 10)),
+  });
 
   @override
   Widget build(BuildContext context) {
