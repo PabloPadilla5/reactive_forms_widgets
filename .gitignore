@@ -67,6 +67,8 @@ build/
 **/ios/Flutter/app.flx
 **/ios/Flutter/app.zip
 **/ios/Flutter/flutter_assets/
+**/ios/Flutter/ephemeral/
+**/macos/Flutter/ephemeral/
 **/pubspec_overrides.yaml
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
