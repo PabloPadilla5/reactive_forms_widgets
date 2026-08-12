@@ -82,6 +82,9 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
     TextInputType keyboardType = TextInputType.datetime,
     Icon? switchToInputEntryModeIcon,
     Icon? switchToCalendarEntryModeIcon,
+    SelectableDayForRangePredicate? selectableDayPredicate,
+    CalendarDelegate<DateTime> calendarDelegate =
+        const GregorianCalendarDelegate(),
     Widget Function(BuildContext context, String error)? errorBuilder,
     // input decorator props
     TextStyle? baseStyle,
@@ -170,6 +173,8 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, String> {
                                switchToInputEntryModeIcon,
                            switchToCalendarEntryModeIcon:
                                switchToCalendarEntryModeIcon,
+                           selectableDayPredicate: selectableDayPredicate,
+                           calendarDelegate: calendarDelegate,
                          );
 
                          if (dateRange == null) {
