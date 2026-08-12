@@ -11,6 +11,10 @@
 
 - Replace deprecated `scribbleEnabled` with `stylusHandwritingEnabled`.
 
+### Features
+
+- Forward `selectAllOnFocus` and `enableInlinePrediction`.
+
 ## [2.0.2]
 
 * Support `reactive_forms: 18.x`

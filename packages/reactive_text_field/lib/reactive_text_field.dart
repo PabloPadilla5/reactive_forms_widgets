@@ -146,6 +146,8 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
     bool stylusHandwritingEnabled =
         EditableText.defaultStylusHandwritingEnabled,
     Widget Function(BuildContext context, String error)? errorBuilder,
+    bool? selectAllOnFocus,
+    bool? enableInlinePrediction,
   }) : super(
          builder: (ReactiveFormFieldState<T, String> field) {
            final state = field as _ReactiveTextFieldState<T>;
@@ -231,6 +233,8 @@ class ReactiveTextField<T> extends ReactiveFormField<T, String> {
              clipBehavior: clipBehavior,
              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
              stylusHandwritingEnabled: stylusHandwritingEnabled,
+             selectAllOnFocus: selectAllOnFocus,
+             enableInlinePrediction: enableInlinePrediction,
            );
          },
        );
