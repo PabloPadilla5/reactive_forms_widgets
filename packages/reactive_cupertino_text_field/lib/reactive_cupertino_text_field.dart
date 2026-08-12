@@ -6,9 +6,9 @@ library;
 
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -29,7 +29,9 @@ const Border _kDefaultRoundedBorder = Border(
 );
 
 Widget _defaultContextMenuBuilder(
-    BuildContext context, EditableTextState editableTextState) {
+  BuildContext context,
+  EditableTextState editableTextState,
+) {
   return CupertinoAdaptiveTextSelectionToolbar.editableText(
     editableTextState: editableTextState,
   );
@@ -183,7 +185,7 @@ class ReactiveCupertinoTextField<T> extends ReactiveFormField<T, String> {
       fontWeight: FontWeight.w400,
       color: CupertinoColors.placeholderText,
     ),
-    bool scribbleEnabled = true,
+    bool stylusHandwritingEnabled = true,
     UndoHistoryController? undoController,
     String? clearButtonSemanticLabel,
     TapRegionCallback? onTapOutside,
@@ -196,93 +198,96 @@ class ReactiveCupertinoTextField<T> extends ReactiveFormField<T, String> {
     SpellCheckConfiguration? spellCheckConfiguration,
     TextMagnifierConfiguration? magnifierConfiguration,
   }) : super(
-          builder: (field) {
-            final state = field as _ReactiveCupertinoTextFieldState<T>;
-            final effectiveDecoration = inputDecoration
-                .applyDefaults(Theme.of(state.context).inputDecorationTheme);
+         builder: (field) {
+           final state = field as _ReactiveCupertinoTextFieldState<T>;
+           final effectiveDecoration = inputDecoration.applyDefaults(
+             Theme.of(state.context).inputDecorationTheme,
+           );
 
-            state._setFocusNode(focusNode);
+           state._setFocusNode(focusNode);
 
-            return InputDecorator(
-              decoration: effectiveDecoration.copyWith(
-                errorText: field.errorText,
-                enabled: field.control.enabled,
-              ),
-              child: CupertinoTextField(
-                controller: state._textController,
-                focusNode: state.focusNode,
-                decoration: decoration,
-                padding: padding,
-                placeholder: placeholder,
-                onChanged: field.didChange,
-                enabled: field.control.enabled,
-                placeholderStyle: placeholderStyle,
-                prefix: prefix,
-                prefixMode: prefixMode,
-                suffix: suffix,
-                suffixMode: suffixMode,
-                clearButtonMode: clearButtonMode,
-                keyboardType: keyboardType,
-                textInputAction: textInputAction,
-                textCapitalization: textCapitalization,
-                style: style,
-                strutStyle: strutStyle,
-                textAlign: textAlign,
-                textAlignVertical: textAlignVertical,
-                readOnly: readOnly,
-                showCursor: showCursor,
-                autofocus: autofocus,
-                obscuringCharacter: obscuringCharacter,
-                obscureText: obscureText,
-                autocorrect: autocorrect,
-                smartDashesType: smartDashesType ??
-                    (obscureText
-                        ? SmartDashesType.disabled
-                        : SmartDashesType.enabled),
-                smartQuotesType: smartQuotesType ??
-                    (obscureText
-                        ? SmartQuotesType.disabled
-                        : SmartQuotesType.enabled),
-                enableSuggestions: enableSuggestions,
-                maxLines: maxLines,
-                minLines: minLines,
-                expands: expands,
-                maxLength: maxLength,
-                maxLengthEnforcement: maxLengthEnforcement,
-                onEditingComplete: onEditingComplete,
-                onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
-                inputFormatters: inputFormatters,
-                cursorWidth: cursorWidth,
-                cursorHeight: cursorHeight,
-                cursorRadius: cursorRadius,
-                cursorColor: cursorColor,
-                selectionHeightStyle: selectionHeightStyle,
-                selectionWidthStyle: selectionWidthStyle,
-                keyboardAppearance: keyboardAppearance,
-                scrollPadding: scrollPadding,
-                dragStartBehavior: dragStartBehavior,
-                enableInteractiveSelection: enableInteractiveSelection,
-                selectionControls: selectionControls,
-                onTap: onTap,
-                scrollController: scrollController,
-                scrollPhysics: scrollPhysics,
-                autofillHints: autofillHints,
-                restorationId: restorationId,
-                scribbleEnabled: scribbleEnabled,
-                undoController: undoController,
-                clearButtonSemanticLabel: clearButtonSemanticLabel,
-                onTapOutside: onTapOutside,
-                cursorOpacityAnimates: cursorOpacityAnimates,
-                contentInsertionConfiguration: contentInsertionConfiguration,
-                clipBehavior: clipBehavior,
-                enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
-                contextMenuBuilder: contextMenuBuilder,
-                spellCheckConfiguration: spellCheckConfiguration,
-                magnifierConfiguration: magnifierConfiguration,
-              ),
-            );
-          },
-        );
+           return InputDecorator(
+             decoration: effectiveDecoration.copyWith(
+               errorText: field.errorText,
+               enabled: field.control.enabled,
+             ),
+             child: CupertinoTextField(
+               controller: state._textController,
+               focusNode: state.focusNode,
+               decoration: decoration,
+               padding: padding,
+               placeholder: placeholder,
+               onChanged: field.didChange,
+               enabled: field.control.enabled,
+               placeholderStyle: placeholderStyle,
+               prefix: prefix,
+               prefixMode: prefixMode,
+               suffix: suffix,
+               suffixMode: suffixMode,
+               clearButtonMode: clearButtonMode,
+               keyboardType: keyboardType,
+               textInputAction: textInputAction,
+               textCapitalization: textCapitalization,
+               style: style,
+               strutStyle: strutStyle,
+               textAlign: textAlign,
+               textAlignVertical: textAlignVertical,
+               readOnly: readOnly,
+               showCursor: showCursor,
+               autofocus: autofocus,
+               obscuringCharacter: obscuringCharacter,
+               obscureText: obscureText,
+               autocorrect: autocorrect,
+               smartDashesType:
+                   smartDashesType ??
+                   (obscureText
+                       ? SmartDashesType.disabled
+                       : SmartDashesType.enabled),
+               smartQuotesType:
+                   smartQuotesType ??
+                   (obscureText
+                       ? SmartQuotesType.disabled
+                       : SmartQuotesType.enabled),
+               enableSuggestions: enableSuggestions,
+               maxLines: maxLines,
+               minLines: minLines,
+               expands: expands,
+               maxLength: maxLength,
+               maxLengthEnforcement: maxLengthEnforcement,
+               onEditingComplete: onEditingComplete,
+               onSubmitted: onSubmitted != null ? (_) => onSubmitted() : null,
+               inputFormatters: inputFormatters,
+               cursorWidth: cursorWidth,
+               cursorHeight: cursorHeight,
+               cursorRadius: cursorRadius,
+               cursorColor: cursorColor,
+               selectionHeightStyle: selectionHeightStyle,
+               selectionWidthStyle: selectionWidthStyle,
+               keyboardAppearance: keyboardAppearance,
+               scrollPadding: scrollPadding,
+               dragStartBehavior: dragStartBehavior,
+               enableInteractiveSelection: enableInteractiveSelection,
+               selectionControls: selectionControls,
+               onTap: onTap,
+               scrollController: scrollController,
+               scrollPhysics: scrollPhysics,
+               autofillHints: autofillHints,
+               restorationId: restorationId,
+               stylusHandwritingEnabled: stylusHandwritingEnabled,
+               undoController: undoController,
+               clearButtonSemanticLabel: clearButtonSemanticLabel,
+               onTapOutside: onTapOutside,
+               cursorOpacityAnimates: cursorOpacityAnimates,
+               contentInsertionConfiguration: contentInsertionConfiguration,
+               clipBehavior: clipBehavior,
+               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+               contextMenuBuilder: contextMenuBuilder,
+               spellCheckConfiguration: spellCheckConfiguration,
+               magnifierConfiguration: magnifierConfiguration,
+             ),
+           );
+         },
+       );
 
   @override
   ReactiveFormFieldState<T, String> createState() =>
@@ -304,7 +309,8 @@ class _ReactiveCupertinoTextFieldState<T>
 
     final initialValue = value;
     _textController = TextEditingController(
-        text: initialValue == null ? '' : initialValue.toString());
+      text: initialValue == null ? '' : initialValue.toString(),
+    );
   }
 
   @override

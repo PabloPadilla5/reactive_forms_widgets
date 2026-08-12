@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_cupertino_text_field/reactive_cupertino_text_field.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -9,9 +9,8 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  FormGroup buildForm() => fb.group({
-        'input': FormControl<String>(value: 'asdfg'),
-      });
+  FormGroup buildForm() =>
+      fb.group({'input': FormControl<String>(value: 'asdfg')});
 
   // This widget is the root of your application.
   @override
