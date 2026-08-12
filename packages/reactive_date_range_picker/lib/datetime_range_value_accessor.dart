@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:intl/intl.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -31,6 +31,7 @@ class DateTimeRangeValueAccessor
         ? null
         : DateTimeRange(
             start: dateTimeFormat.parse(dateRange.first),
-            end: dateTimeFormat.parse(dateRange.last));
+            end: dateTimeFormat.parse(dateRange.last),
+          );
   }
 }

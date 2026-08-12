@@ -1,5 +1,5 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactive_date_range_picker/reactive_date_range_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -11,15 +11,15 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   FormGroup buildForm() => fb.group({
-        'dateRange': FormControl<DateTimeRange>(),
-        'dateRange2': FormControl<DateTimeRange>(
-          disabled: true,
-          value: DateTimeRange(
-            start: DateTime.now(),
-            end: DateTime.now().add(const Duration(days: 1)),
-          ),
-        ),
-      });
+    'dateRange': FormControl<DateTimeRange>(),
+    'dateRange2': FormControl<DateTimeRange>(
+      disabled: true,
+      value: DateTimeRange(
+        start: DateTime.now(),
+        end: DateTime.now().add(const Duration(days: 1)),
+      ),
+    ),
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +71,7 @@ class MyApp extends StatelessWidget {
                         suffixIcon: Icon(Icons.calendar_today),
                       ),
                       onTap: (context, value) async {
-                        return await showDateRangePicker(
-                          context,
-                          value: value,
-                        );
+                        return await showDateRangePicker(context, value: value);
                       },
                     ),
                     ElevatedButton(
@@ -156,9 +153,7 @@ CalendarDatePicker2WithActionButtonsConfig getCalendarConfig(
 }) {
   final primaryColor = Theme.of(context).primaryColor;
 
-  const dayTextStyle = TextStyle(
-    fontWeight: FontWeight.w700,
-  );
+  const dayTextStyle = TextStyle(fontWeight: FontWeight.w700);
 
   final firstDay = firstDate?.startOfDay();
   final lastDay = lastDate?.startOfDay();
@@ -187,16 +182,8 @@ CalendarDatePicker2WithActionButtonsConfig getCalendarConfig(
     centerAlignModePicker: true,
     customModePickerIcon: const SizedBox(),
     selectedDayTextStyle: dayTextStyle.copyWith(color: Colors.white),
-    nextMonthIcon: Icon(
-      Icons.arrow_right,
-      size: 20,
-      color: primaryColor,
-    ),
-    lastMonthIcon: Icon(
-      Icons.arrow_left,
-      size: 20,
-      color: primaryColor,
-    ),
+    nextMonthIcon: Icon(Icons.arrow_right, size: 20, color: primaryColor),
+    lastMonthIcon: Icon(Icons.arrow_left, size: 20, color: primaryColor),
     todayTextStyle: dayTextStyle.merge(TextStyle(color: primaryColor)),
   );
 }
