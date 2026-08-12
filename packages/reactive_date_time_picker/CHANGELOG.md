@@ -7,6 +7,11 @@
 - Raise the minimum Flutter version to `3.44.0` and the Dart SDK to `^3.12.0`.
 - Require `reactive_forms` `>=19.0.0 <20.0.0`.
 
+### Features
+
+- Forward `calendarDelegate`, `switchToTimerEntryModeIcon`, and
+  `emptyInitialInput` to `showDatePicker` / `showTimePicker`.
+
 ## [5.0.1]
 
 * Support `reactive_forms: 18.x`

@@ -122,6 +122,10 @@ class ReactiveDateTimePicker
     Widget Function(BuildContext context, String? value)? valueBuilder,
     Icon? switchToInputEntryModeIcon,
     Icon? switchToCalendarEntryModeIcon,
+    Icon? switchToTimerEntryModeIcon,
+    bool emptyInitialInput = false,
+    CalendarDelegate<DateTime> calendarDelegate =
+        const GregorianCalendarDelegate(),
   }) : super(
          valueAccessor:
              valueAccessor ?? _effectiveValueAccessor(type, dateFormat),
@@ -211,6 +215,7 @@ class ReactiveDateTimePicker
                                  switchToInputEntryModeIcon,
                              switchToCalendarEntryModeIcon:
                                  switchToCalendarEntryModeIcon,
+                             calendarDelegate: calendarDelegate,
                            );
                          }
 
@@ -239,6 +244,11 @@ class ReactiveDateTimePicker
                              onEntryModeChanged: onEntryModeChanged,
                              anchorPoint: timePickerAnchorPoint,
                              orientation: timePickerOrientation,
+                             switchToInputEntryModeIcon:
+                                 switchToInputEntryModeIcon,
+                             switchToTimerEntryModeIcon:
+                                 switchToTimerEntryModeIcon,
+                             emptyInitialInput: emptyInitialInput,
                            );
                          }
 
